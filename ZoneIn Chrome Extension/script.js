@@ -48,7 +48,7 @@ try {
   if(Http.responseText == 1){
       //FUTURE BLOCK WEBSITE
       var img = document.createElement("img");
-      img.src = chrome.runtime.getURL("bigIcon3.png");    
+      img.src = chrome.runtime.getURL("bigIcon3.png");
       document.body.innerHTML = '<html><p class="aligncenter"><img src='+img.src+' alt="centered image" /><h1><center>This site has been classified as entertainment, therefore it has been blocked by the ZoneIn extension.<center></h1><h3><center>If this was a mistake then you may disable the extension or open a different browser just this once.</center></h3></p><style>.aligncenter {text-align: center;}</style></html>';
   }
   }
@@ -81,7 +81,11 @@ setInterval(function(){
         //console.log(Http.responseText);
         //if the server responds 1 (Block code) then add it to the blockList and then set the video placeholder to be empty
         if(Http.responseText == 1){
-            window.location.href = "http://www.youtube.com/";
+
+          var img = document.createElement("img");
+          img.src = chrome.runtime.getURL("bigIcon3.png");
+          document.body.innerHTML = '<html><p class="aligncenter"><img src='+img.src+' alt="centered image" /><h1><center>This video has been classified as entertainment, therefore it has been blocked by the ZoneIn extension.<center></h1></p><style>.aligncenter {text-align: center;}</style></html>';
+          //window.location.href = "http://www.youtube.com/";
             //add the link to the block list
             blockList.push(u);
         }
