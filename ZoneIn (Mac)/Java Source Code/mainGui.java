@@ -1,8 +1,8 @@
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
@@ -34,7 +34,7 @@ public class mainGui {
 			frame.setBounds(100, 100, 170, 400);
 			frame.setTitle("ZoneIn");
 			frame.setResizable(false);
-			Image icon = Toolkit.getDefaultToolkit().getImage("/Applications/ZoneIn/jlogoicon.png");
+			Image icon = Toolkit.getDefaultToolkit().getImage("/Applications/ZoneIn/Icons/jlogoicon.png");
 			frame.setIconImage(icon);
 			
 			
@@ -65,7 +65,7 @@ public class mainGui {
 			pane.add(welcomeL);
 			welcomeL.setText("Welcome "+nameS+"!");
 			welcomeL.setBounds(10, 110, 170, 20);
-			
+			welcomeL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 			
 			
 			
@@ -140,6 +140,7 @@ public class mainGui {
 			JLabel versionL = new JLabel();
 			pane.add(versionL);
 			versionL.setText("ZoneIn V 1.5");
+			versionL.setFont(new Font("Sans-Serif", Font.BOLD, 10));
 			versionL.setBounds(80, 340, 150, 20);
 			
 			frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
@@ -165,7 +166,12 @@ public class mainGui {
 		{
 			System.out.println("Creating Setting Gui");
 			settingsGui sg = new settingsGui();
-			sg.startSettingGui();
+			try {
+				sg.startSettingGui();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -57,27 +58,30 @@ public class hostGui {
 		JLabel passL = new JLabel();
 		pane.add(passL);
 		passL.setText("Enter a Password:");
+		passL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		passL.setBounds(10, 30, 150, 20);
 		
 		
 		pane.add(passF);
-		passF.setBounds(120,30,100,20);
+		passF.setBounds(140,30,100,20);
 		
 		JLabel hoursL = new JLabel();
 		pane.add(hoursL);
 		hoursL.setText("Enter Hours:");
+		hoursL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		hoursL.setBounds(10,60,100,20);
 		
 		pane.add(hoursF);
-		hoursF.setBounds(120,60,50,20);
+		hoursF.setBounds(140,60,50,20);
 		
 		JLabel minL = new JLabel();
 		pane.add(minL);
 		minL.setText("Enter Minutes:");
-		minL.setBounds(10, 90, 100, 20);
+		minL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
+		minL.setBounds(10, 90, 120, 20);
 		
 		pane.add(minF);
-		minF.setBounds(120,90,50,20);
+		minF.setBounds(140,90,50,20);
 		
 		
 		
@@ -99,7 +103,8 @@ public class hostGui {
 		pane.add(onofL);
 		onofL.setText("Offline");
 		onofL.setBounds(50, 130, 80, 20);
-		
+		onofL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
+
 		
 		
 		
