@@ -9,6 +9,20 @@ import requests
 with open('C:/ZoneIn/Python/noFunAI.pkl','rb') as file:
     noFunAI = cPickle.load(file)
 
+blockWebTags = []
+blockYTTags = []
+file = open('C:/ZoneIn/WritableFiles/blockTags.txt','r')
+for tag in file.readlines():
+    blockWebTags.append(str(tag).strip("\n"))
+file.close()
+
+file = open('C:/ZoneIn/WritableFiles/blockTagsYT.txt','r')
+for tag in file.readlines():
+    blockYTTags.append(str(tag).strip("\n"))
+file.close()
+
+
+
 """""""""""""""""""""""
 
 variables:
@@ -43,9 +57,9 @@ def shutdown():
 def decide(URL):
     #if the URL contains the YT code
     if URL[0] == "Y" and URL[1]=="T":
-        code = ytBlock.decide(URL[2:])
+        code = ytBlock.decide(URL[2:],blockYTTags)
     else:
-        code = noFunAIPY.decide(URL,noFunAI)
+        code = noFunAIPY.decide(URL,noFunAI,blockWebTags)
     return str(code)
 
 app.run()

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -59,7 +60,7 @@ public class firstTimeMain {
 		pane.add(welcomeL);
 		welcomeL.setText("Welcome "+nameS+"!");
 		welcomeL.setBounds(10, 110, 170, 20);
-		
+		welcomeL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		
 		
 		
@@ -134,6 +135,8 @@ public class firstTimeMain {
 		pane.add(versionL);
 		versionL.setText("ZoneIn V 1.5");
 		versionL.setBounds(80, 340, 150, 20);
+		versionL.setFont(new Font("Sans-Serif", Font.BOLD, 10));
+
 		
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -158,7 +161,12 @@ public class firstTimeMain {
 		{
 			System.out.println("Creating Setting Gui");
 			settingsGui sg = new settingsGui();
-			sg.startSettingGui();
+			try {
+				sg.startSettingGui();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	

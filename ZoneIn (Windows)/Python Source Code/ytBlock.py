@@ -14,14 +14,21 @@ Function:
 
 
 
-def decide(URL):
+def decide(URL,blockYTTags):
+
+
     url = URL
     data = requests.get('https://www.youtube.com/watch?'+str(url))
     soup = BeautifulSoup(data.text, 'html.parser')
     category = soup.find(itemprop="genre").get("content")
-    if str(category) == "Comedy" or str(category) == "Film & Animation" or str(category) == "Pets & Animals" or str(category) =="Sports" or str(category) == "Travel & Events" or str(category) == "Gaming" or str(category) == "People & Blogs" or str(category) == "Entertainment" or str(category) == "Howto & Style":
-        return 1
-    return 2
+    if "ALL" in blockYTTags:
+        if str(category) == "Comedy" or str(category) == "Film & Animation" or str(category) == "Pets & Animals" or str(category) =="Sports" or str(category) == "Travel & Events" or str(category) == "Gaming" or str(category) == "People & Blogs" or str(category) == "Entertainment" or str(category) == "Howto & Style":
+            return 1
+        return 2
+    else:
+        if str(category) in blockYTTags:
+            return 1
+        return 2
 
     #This is how the meta looks like
     #<meta itemprop="genre" content="Gaming">

@@ -55,29 +55,25 @@ public class welcomeGui
 		pane.add(zt);
 		zt.setText("Welcome to ZoneIn!");
 		zt.setForeground(new Color(255, 102, 77));
-		zt.setBounds(40, 100, 320, 40);
-		zt.setFont(new Font("Serif", Font.BOLD, 35));
+		zt.setBounds(30, 100, 350, 40);
+		zt.setFont(new Font("Sans-Serif", Font.BOLD, 35));
 		
 		JLabel intro1L = new JLabel();
 		pane.add(intro1L);
-		intro1L.setText("This Application blocks entertainment websites and");
-		intro1L.setFont(new Font("Serif", Font.PLAIN, 15));
-		intro1L.setBounds(40, 150, 350, 20);
+		intro1L.setText("This Application allows you to block out any entertainment");
+		intro1L.setFont(new Font("Sans-Serif", Font.PLAIN, 12));
+		intro1L.setBounds(30, 150, 350, 20);
 		JLabel intro2L = new JLabel();
 		pane.add(intro2L);
-		intro2L.setText("Youtube videos to allow you to study much more ");
-		intro2L.setFont(new Font("Serif", Font.PLAIN, 15));
-		intro2L.setBounds(40, 170, 350, 20);
-		JLabel intro3L = new JLabel();
-		pane.add(intro3L);
-		intro3L.setText("effectively all through the power of AI.");
-		intro3L.setFont(new Font("Serif", Font.PLAIN, 15));
-		intro3L.setBounds(40, 190, 350, 20);
+		intro2L.setText("that distracts you from getting your work done.");
+		intro2L.setFont(new Font("Sans-Serif", Font.PLAIN, 12));
+		intro2L.setBounds(55, 170, 350, 20);
+
 		
 		JLabel en = new JLabel();
 		pane.add(en);
 		en.setText("Enter Your Name: ");
-		en.setFont(new Font("Serif", Font.PLAIN, 15));
+		en.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		en.setBounds(20, 260, 150, 20);
 		
 		pane.add(enF);

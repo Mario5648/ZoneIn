@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class joinGui {
 		JLabel ipL = new JLabel();
 		pane.add(ipL);
 		ipL.setText("Enter the Host's IP:");
+		ipL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		ipL.setBounds(10, 30, 150, 20);
 		
 		pane.add(ipF);

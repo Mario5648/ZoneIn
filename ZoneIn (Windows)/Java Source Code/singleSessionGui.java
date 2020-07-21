@@ -27,6 +27,7 @@ public class singleSessionGui {
 	public JTextField minutesF = new JTextField();
 	public JLabel countDownTimer = new JLabel();
 	public JButton startSession;
+	public JButton quitSession;
 
 	public int hours = 0;
 	public int minutes = 0;
@@ -38,7 +39,7 @@ public class singleSessionGui {
 	{
 		System.out.println("[START] Creating Gui Single Session");
 		JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 200, 300);
+		frame.setBounds(100, 100, 200, 400);
 		frame.setTitle("ZoneIn-SingleSession");
 		frame.setResizable(false);
 		Image icon = Toolkit.getDefaultToolkit().getImage("C:\\ZoneIn\\Icons\\jlogoicon.png");
@@ -53,28 +54,29 @@ public class singleSessionGui {
 		JLabel hoursL = new JLabel();
 		pane.add(hoursL);
 		hoursL.setText("Enter Hours: ");
+		hoursL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		hoursL.setBounds(10, 20, 100, 20);
 		
 		JLabel minutesL = new JLabel();
 		pane.add(minutesL);
 		minutesL.setText("Enter Minutes: ");
+		minutesL.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
 		minutesL.setBounds(10, 60, 100, 20);
 		
 		pane.add(hoursF);
-		hoursF.setBounds(100, 20, 40, 20);
+		hoursF.setBounds(120, 20, 40, 20);
 		
 		
 		pane.add(minutesF);
-		minutesF.setBounds(100, 60, 40, 20);
+		minutesF.setBounds(120, 60, 40, 20);
 		
 		
 		
 		pane.add(countDownTimer);
 		countDownTimer.setText("00:00:00");
-		countDownTimer.setFont(new Font("Serif", Font.PLAIN, 35));
-		countDownTimer.setBounds(30, 100, 150, 70);
+		countDownTimer.setFont(new Font("Sans-Serif", Font.PLAIN, 35));
+		countDownTimer.setBounds(25, 100, 150, 70);
 		countDownTimer.setForeground(new Color(255,109,77));
-		
 		
 		
 		
@@ -93,12 +95,52 @@ public class singleSessionGui {
 		startSession.setBounds(25, 200, 140, 40);
 		startSession.addActionListener(new startSinglePython());
 		
+		BufferedImage buttonIconQ = null;
+		try {
+			buttonIconQ = ImageIO.read(new File("C:\\ZoneIn\\Icons\\jbuttonQ.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		quitSession = new JButton(new ImageIcon(buttonIconQ));
+		pane.add(quitSession);
+		quitSession.setFocusPainted(false);
+		quitSession.setContentAreaFilled(false);
+		quitSession.setBounds(25, 270, 140, 40);
+		quitSession.addActionListener(new quitSingle());
+		
 		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 		
 		frame.setVisible(true);
 		System.out.println("[FINISHED] Done with Single Session Gui");
 	}
 	
+	
+	public class quitSingle implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{
+			timer.setRepeats(false);
+			startSession.setEnabled(true);
+			URL url;
+			try {
+				url = new URL("http://127.0.0.1:5000/shutdown");
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setRequestMethod("GET");
+				int responseCode = connection.getResponseCode();
+				System.out.println(responseCode);
+				totalSeconds = 0;
+				System.out.println("[SHUTDOWN] Shutting down Python Server");
+			} catch (IOException e4) {
+				e4.printStackTrace();
+			}
+			System.out.println("[FINISHED] Finished Session!");
+			countDownTimer.setText("00:00:00");
+
+		}
+	
+	}
 	public class startSinglePython implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -160,11 +202,13 @@ public class singleSessionGui {
 			    				connection.setRequestMethod("GET");
 			    				int responseCode = connection.getResponseCode();
 			    				System.out.println(responseCode);
+			    				countDownTimer.setText("00:00:00");
 			    				System.out.println("[SHUTDOWN] Shutting down Python Server");
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
 		    				System.out.println("[FINISHED] Finished Session!");
+		    				countDownTimer.setText("00:00:00");
 
 		            	}
 
@@ -173,6 +217,8 @@ public class singleSessionGui {
 		        timer = new Timer(1000 ,taskPerformer);
 		        timer.setRepeats(true);
 		        timer.start();
+
+
 			}
 		}
 	}
